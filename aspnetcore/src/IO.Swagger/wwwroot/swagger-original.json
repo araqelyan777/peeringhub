@@ -16,8 +16,6 @@
   "servers" : [ {
     "url" : "https://virtserver.swaggerhub.com/araqelyan777/Peeringhub/1.0.0",
     "description" : "SwaggerHub API Auto Mocking"
-  }, {
-    "url" : "https://petstore.swagger.io/v2"
   } ],
   "paths" : {
     "/admin/clec/{clec_uuid}" : {
