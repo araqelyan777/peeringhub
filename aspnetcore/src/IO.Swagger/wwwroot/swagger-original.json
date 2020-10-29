@@ -1,0 +1,14 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Sample API",
+    "description" : "Optional multiline or single-line description in HTML.",
+    "version" : "0.1.9"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/araqelyan777/Peeringhub/0.1.9",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "paths" : { },
+  "components" : { }
+}
