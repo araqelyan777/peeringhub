@@ -9,6 +9,160 @@
     "url" : "https://virtserver.swaggerhub.com/araqelyan777/Peeringhub/0.1.9",
     "description" : "SwaggerHub API Auto Mocking"
   } ],
-  "paths" : { },
-  "components" : { }
+  "paths" : {
+    "/admin/clec/{clec_uuid}" : {
+      "get" : {
+        "tags" : [ "Get Clec User" ],
+        "description" : "Get Clec User",
+        "parameters" : [ {
+          "name" : "clec_uuid",
+          "in" : "path",
+          "description" : "Clec uuid to get clec user",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully Executed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Object not fount error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "inline_response_200" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "clec_uuid" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string",
+            "format" : "email"
+          },
+          "role" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "phone_number" : {
+            "type" : "string"
+          },
+          "contact_address" : {
+            "type" : "string"
+          },
+          "contact_suite" : {
+            "type" : "string"
+          },
+          "contact_city" : {
+            "type" : "string"
+          },
+          "contact_country" : {
+            "type" : "string"
+          },
+          "contact_postal_code" : {
+            "type" : "number"
+          },
+          "company_name" : {
+            "type" : "string"
+          },
+          "profile_address" : {
+            "type" : "string"
+          },
+          "profile_suite" : {
+            "type" : "string"
+          },
+          "profile_city" : {
+            "type" : "string"
+          },
+          "profile_country" : {
+            "type" : "string"
+          },
+          "profile_postal_code" : {
+            "type" : "number"
+          },
+          "state_of_clec_certification" : {
+            "type" : "string"
+          },
+          "upload_clec_certification" : {
+            "type" : "string"
+          },
+          "ocn" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "state_of_clec_certification" : "state_of_clec_certification",
+          "contact_suite" : "contact_suite",
+          "role" : "role",
+          "last_name" : "last_name",
+          "contact_city" : "contact_city",
+          "profile_country" : "profile_country",
+          "profile_suite" : "profile_suite",
+          "profile_city" : "profile_city",
+          "contact_postal_code" : 0.8008281904610115,
+          "upload_clec_certification" : "upload_clec_certification",
+          "password" : "password",
+          "profile_address" : "profile_address",
+          "company_name" : "company_name",
+          "profile_postal_code" : 6.027456183070403,
+          "phone_number" : "phone_number",
+          "ocn" : "ocn",
+          "first_name" : "first_name",
+          "contact_address" : "contact_address",
+          "email" : "",
+          "username" : "username",
+          "clec_uuid" : "clec_uuid",
+          "contact_country" : "contact_country"
+        }
+      },
+      "inline_response_404" : {
+        "type" : "object",
+        "properties" : {
+          "error" : {
+            "type" : "string"
+          },
+          "error_type" : {
+            "type" : "string"
+          },
+          "success" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }
+      }
+    }
+  }
 }
