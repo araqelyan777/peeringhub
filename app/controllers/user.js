@@ -6,6 +6,7 @@ const {Validation} = require('../utilities/validation')
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 
+
 const saltRounds = 10;
 
 const validateRequestData = (data)=>{
@@ -65,7 +66,7 @@ exports.create = (req, res) => {
             .catch(err => {
                 res.status(500).send({
                     message:
-                        err.parent.detail || err.message || "Some error occurred while creating the Tutorial."
+                        err.message || "Some error occurred while creating the Tutorial."
                 });
             });
     }else {
@@ -77,6 +78,9 @@ exports.create = (req, res) => {
 
 
 };
+
+
+
 
 exports.login = (req, res) => {
 
@@ -93,13 +97,13 @@ exports.login = (req, res) => {
                 res.status(503).send({
                     message: 'User Not found'
                 });
-            }
 
+            }
         }).catch(err => {
-                console.log(err)
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while creating the Tutorial."
+                res.status(404).send({
+                    error: err.message || 'User Not found' || "Some error occurred while getting the clec user.",
+                    error_type: 'string',
+                    success: false,
                 });
             });
     }
