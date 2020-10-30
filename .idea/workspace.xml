@@ -21,9 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b9c34ff6-65c0-4519-a851-df592c98303f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utilities/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/utilities/validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
     </list>
@@ -119,7 +116,7 @@
       <workItem from="1603959637460" duration="7475000" />
       <workItem from="1603973764195" duration="3824000" />
       <workItem from="1603978131700" duration="6323000" />
-      <workItem from="1604040813673" duration="8122000" />
+      <workItem from="1604040813673" duration="9122000" />
     </task>
     <servers />
   </component>

@@ -31,7 +31,6 @@ db.sequelize.sync();
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(SwaggerYaml));
 
 
-
 // Connect Routes
 require("./app/routes/tutorial")(app);
 require("./app/routes/user")(app);
