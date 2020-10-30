@@ -1,14 +1,20 @@
 module.exports = app => {
-    var router = require("express").Router();
+    const router = require("express").Router();
+
+    // For File Upload
     const multer = require('../utilities/multer.js');
     const upload = multer.setImageFolder('app/public');
 
+    //For validation request body
+    const { userValidationRules, validate } = require('../utilities/validation/validator')
+    const {adminClecPostValidation} = require("../utilities/validation/validationList")
+
+    //Controllers
     const user = require("../controllers/user.js");
 
 
     // Admin Api
-    // Create a new Clec
-    router.post("/",upload.any(),user.register);
+    router.post("/",upload.any(),userValidationRules(adminClecPostValidation), validate,user.register);
     router.get("/:clec_uuid",user.login);
 
 

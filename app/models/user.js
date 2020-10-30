@@ -2,7 +2,9 @@ module.exports = (sequelize, Sequelize,DataTypes) => {
     const User = sequelize.define("users", {
         clec_uuid: {
             type: Sequelize.UUID,
+            // type: Sequelize.INTEGER,
             primaryKey: true,
+            // autoIncrement: true
         },
         username: {
             type: Sequelize.STRING,

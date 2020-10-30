@@ -5,20 +5,13 @@ const cors = require("cors");
 const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
 const SwaggerYaml = YAML.load('./swagger.yaml')
-// const multer = require('multer');
 
-// const upload = multer();
 
 const app = express();
 
-var corsOptions = {
+let corsOptions = {
     origin: "http://localhost:8081"
 };
-
-
-// for parsing multipart/form-data
-// app.use(upload.single('file'));
-// app.use(express.static('public'));
 
 
 app.use(cors(corsOptions));
@@ -32,10 +25,8 @@ const db = require("./app/models");
 db.sequelize.sync();
 
 
-
 // Swagger
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(SwaggerYaml));
-
 
 
 // Connect Routes

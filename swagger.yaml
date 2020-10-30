@@ -17,6 +17,7 @@ paths:
         - name: clec_uuid
           in: path
           description: Clec uuid to get clec user
+          required: true
           schema:
             type: string
       responses:
@@ -217,7 +218,9 @@ components:
         error:
           type: array
           items:
-            type: string
+            type: object
+            items:
+              type: string
     AlreadyExists:
       properties:
         error_type:
