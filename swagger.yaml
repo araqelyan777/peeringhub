@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  title: Sample API
+  title: Peeringhub API
   description: Optional multiline or single-line description in HTML.
-  version: 0.1.9
-#servers:
+  version: 1.0.0
+  #servers:
   # Added by API Auto Mocking Plugin
 #  - description: SwaggerHub API Auto Mocking
 #    url: https://virtserver.swaggerhub.com/araqelyan777/Peeringhub/1.0.0
@@ -11,12 +11,11 @@ paths:
   /admin/clec/{clec_uuid}:
     get:
       tags:
-        - Get Clec User
+        - Clec User
       description: Get Clec User
       parameters:
         - name: clec_uuid
           in: path
-          required: true
           description: Clec uuid to get clec user
           schema:
             type: string
@@ -26,54 +25,55 @@ paths:
           content:
             application/json:
               schema:
-#                type: object
-                $ref: '#/components/schemas/User'
-#                properties:
-#                  username:
-#                    type: string
-#                  clec_uuid:
-#                    type: string
-#                  password:
-#                    type: string
-#                  email:
-#                    type: string
-#                    format: email
-#                  role:
-#                    type: string
-#                  first_name:
-#                    type: string
-#                  last_name:
-#                    type: string
-#                  phone_number:
-#                    type: string
-#                  contact_address:
-#                    type: string
-#                  contact_suite:
-#                    type: string
-#                  contact_city:
-#                    type: string
-#                  contact_country:
-#                    type: string
-#                  contact_postal_code:
-#                    type: number
-#                  company_name:
-#                    type: string
-#                  profile_address:
-#                    type: string
-#                  profile_suite:
-#                    type: string
-#                  profile_city:
-#                    type: string
-#                  profile_country:
-#                    type: string
-#                  profile_postal_code:
-#                    type: number
-#                  state_of_clec_certification:
-#                    type: string
-#                  upload_clec_certification:
-#                    type: string
-#                  ocn:
-#                    type: string
+                type: object
+                properties:
+                  username:
+                    type: string
+                  clec_uuid:
+                    type: string
+                    format: uuid
+                  password:
+                    type: string
+                    format: password
+                  email:
+                    type: string
+                    format: email
+                  role:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  phone_number:
+                    type: string
+                  contact_address:
+                    type: string
+                  contact_suite:
+                    type: string
+                  contact_city:
+                    type: string
+                  contact_country:
+                    type: string
+                  contact_postal_code:
+                    type: number
+                  company_name:
+                    type: string
+                  profile_address:
+                    type: string
+                  profile_suite:
+                    type: string
+                  profile_city:
+                    type: string
+                  profile_country:
+                    type: string
+                  profile_postal_code:
+                    type: number
+                  state_of_clec_certification:
+                    type: string
+                  upload_clec_certification:
+                    type: string
+                  ocn:
+                    type: string
         404:
           content:
             application/json:
@@ -88,6 +88,130 @@ paths:
                     type: boolean
                     default: false
           description: Object not fount error
+
+  /admin/clec:
+    post:
+      tags:
+        - Clec User
+      description: Create Clec User
+      requestBody:
+        content:
+          application/json:
+           schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+                format: password
+              confirm_password:
+                type: string
+                format: password
+              email:
+                type: string
+                format: email
+              role:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              phone_number:
+                type: string
+              contact_address:
+                type: string
+              contact_suite:
+                type: string
+              contact_city:
+                type: string
+              contact_country:
+                type: string
+              contact_postal_code:
+                type: number
+              company_name:
+                type: string
+              profile_address:
+                type: string
+              profile_suite:
+                type: string
+              profile_city:
+                type: string
+              profile_country:
+                type: string
+              profile_postal_code:
+                type: number
+              state_of_clec_certification:
+                type: string
+              upload_clec_certification:
+                type: string
+              ocn:
+                type: string
+      responses:
+        200:
+          description: Successfully Executed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  object_id:
+                    type: string
+        400:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_type:
+                    type: string
+                  success:
+                    type: boolean
+                    default: false
+                  error:
+                    type: array
+                    items:
+                      type: string
+          description: Validation error
+        404:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  error_type:
+                    type: string
+                  success:
+                    type: boolean
+                    default: false
+          description: Object not fount error
+        406:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_type:
+                    type: string
+                  success:
+                    type: boolean
+                    default: false
+                  error:
+                    properties:
+                      message:
+                        type: string
+                      code:
+                        type: number
+                        default: 0
+          description: User already exist
+
+
+
 
 
 

@@ -27,24 +27,8 @@ db.sequelize.sync();
 
 
 
-
 // Swagger
-const swaggerOptions = {
-    swaggerDefinition: {
-        info:{
-            title: 'Library Api',
-            version: '1.0.0'
-        }
-    },
-    apis: ['server.js'],
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions)
-
-
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(SwaggerYaml));
-
-
 
 
 

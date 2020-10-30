@@ -19,16 +19,17 @@ const validateRequestData = (data)=>{
         Validation('string',true,data.last_name,null,'last name')
     )
 
-    let errorMessage = errorMessageArr.filter(Boolean).length ? errorMessageArr.filter(Boolean).join('! ') + '!' : ''
+
+    let errorMessage = errorMessageArr.filter(Boolean).length ? errorMessageArr.filter(Boolean) : []
 
     return errorMessage
 }
 
 // Create and Save a new Clec Admin
-exports.create = (req, res) => {
-
+exports.register = (req, res) => {
     let validateResult = validateRequestData(req.body)
-    if (validateResult === ''){
+
+    if (validateResult.length === 0){
         const salt = bcrypt.genSaltSync(saltRounds);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -61,17 +62,23 @@ exports.create = (req, res) => {
         // Save Clec Admin in the database
         User.create(user)
             .then(data => {
-                res.status(200).send(data);
+                res.status(200).send({success:true,object_id:data.clec_uuid});
             })
             .catch(err => {
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while creating the Tutorial."
+                res.status(406).send({
+                    error_type: 'string',
+                    success: false,
+                    error:{
+                        message: err.parent ? err.parent.detail : err.message,
+                        code: 0
+                    }
                 });
             });
     }else {
         res.status(400).send({
-            message: validateResult
+            error_type: 'string',
+            success: false,
+            error: validateResult
         });
         return;
     }
