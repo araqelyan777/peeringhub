@@ -30,63 +30,48 @@ module.exports = (sequelize, Sequelize,DataTypes) => {
         },
         phone_number: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         contact_address: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         contact_suite: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         contact_city: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         contact_country: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         contact_postal_code: {
-            type: Sequelize.INTEGER,
-            allowNull: true
+            type: Sequelize.STRING,
         },
         company_name: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         profile_address: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         profile_suite: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         profile_city: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         profile_country: {
             type: Sequelize.STRING,
-            allowNull: true
         },
         profile_postal_code: {
-            type: Sequelize.INTEGER,
-            allowNull: true
+            type: Sequelize.STRING,
         },
         state_of_clec_certification: {
-            type: Sequelize.STRING,
-            allowNull: true
+            type: Sequelize.STRING(2),
         },
-        upload_clec_certification: {
-            type: Sequelize.STRING,
-            allowNull: true
-        },
+        // upload_clec_certification: {
+        //     type: Sequelize.ARRAY(Sequelize.STRING),
+        // },
         ocn: {
-            type: Sequelize.STRING,
-            allowNull: true
+            type: Sequelize.ARRAY(Sequelize.STRING(4)),
         },
 
     });

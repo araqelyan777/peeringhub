@@ -11,7 +11,7 @@ paths:
   /admin/clec/{clec_uuid}:
     get:
       tags:
-        - Clec User
+        - Admin API
       description: Get Clec User
       parameters:
         - name: clec_uuid
@@ -31,18 +31,72 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ObjectNotFound'
-          description: Object not fount error
+          description: Object not found error
 
   /admin/clec:
     post:
       tags:
-        - Clec User
+        - Admin API
       description: Create Clec User
       requestBody:
         content:
           application/json:
            schema:
-             $ref: '#/components/schemas/UserClec'
+             properties:
+               username:
+                 type: string
+               clec_uuid:
+                 type: string
+                 format: uuid
+               password:
+                 type: string
+                 format: password
+               confirm_password:
+                 type: string
+                 format: password
+               email:
+                 type: string
+                 format: email
+               role:
+                 type: string
+               first_name:
+                 type: string
+               last_name:
+                 type: string
+               phone_number:
+                 type: string
+               contact_address:
+                 type: string
+               contact_suite:
+                 type: string
+               contact_city:
+                 type: string
+               contact_country:
+                 type: string
+               contact_postal_code:
+                 type: string
+                 example: '0008'
+               company_name:
+                 type: string
+               profile_address:
+                 type: string
+               profile_suite:
+                 type: string
+               profile_city:
+                 type: string
+               profile_country:
+                 type: string
+               profile_postal_code:
+                 type: string
+                 example: '8000'
+               state_of_clec_certification:
+                 type: string
+                 example: US
+               upload_clec_certification:
+                 type: string
+               ocn:
+                 type: array
+                 example: [ test, te75, 7895 ]
       responses:
         200:
           description: Successfully Executed
@@ -72,8 +126,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlreadyExist'
-          description: User already exist
+                $ref: '#/components/schemas/AlreadyExists'
+          description: User already exists
+
+
 
 
 
@@ -81,53 +137,67 @@ components:
   schemas:
     UserClec:
       properties:
-        username:
+        payload:
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              clec_uuid:
+                type: string
+                format: uuid
+              password:
+                type: string
+                format: password
+              email:
+                type: string
+                format: email
+              role:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              phone_number:
+                type: string
+              contact_address:
+                type: string
+              contact_suite:
+                type: string
+              contact_city:
+                type: string
+              contact_country:
+                type: string
+              contact_postal_code:
+                type: number
+              company_name:
+                type: string
+              profile_address:
+                type: string
+              profile_suite:
+                type: string
+              profile_city:
+                type: string
+              profile_country:
+                type: string
+              profile_postal_code:
+                type: number
+              state_of_clec_certification:
+                type: string
+                example: US
+              upload_clec_certification:
+                type: string
+              ocn:
+                type: array
+                example: [test, te75, 7895]
+        success:
+          type: boolean
+          default: true
+        token:
           type: string
-        clec_uuid:
+        expired:
           type: string
-          format: uuid
-        password:
-          type: string
-          format: password
-        email:
-          type: string
-          format: email
-        role:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        phone_number:
-          type: string
-        contact_address:
-          type: string
-        contact_suite:
-          type: string
-        contact_city:
-          type: string
-        contact_country:
-          type: string
-        contact_postal_code:
-          type: number
-        company_name:
-          type: string
-        profile_address:
-          type: string
-        profile_suite:
-          type: string
-        profile_city:
-          type: string
-        profile_country:
-          type: string
-        profile_postal_code:
-          type: number
-        state_of_clec_certification:
-          type: string
-        upload_clec_certification:
-          type: string
-        ocn:
-          type: string
+          example: 2 days
     ObjectNotFound:
       properties:
         error:
@@ -148,7 +218,7 @@ components:
           type: array
           items:
             type: string
-    AlreadyExist:
+    AlreadyExists:
       properties:
         error_type:
           type: string
@@ -162,6 +232,7 @@ components:
             code:
               type: number
               default: 0
+
 
 
 

@@ -5,6 +5,7 @@ const {signToken} = require('../utilities/jwt')
 const {Validation} = require('../utilities/validation')
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const {JWT_EXPIRATION} = require('./../config/config')
 
 
 const saltRounds = 10;
@@ -16,18 +17,31 @@ const validateRequestData = (data)=>{
         Validation('password',true,data.password,data.confirm_password,'password'),
         Validation('email',true,data.email,null,'email'),
         Validation('string',true,data.first_name,null,'first name'),
-        Validation('string',true,data.last_name,null,'last name')
+        Validation('string',true,data.last_name,null,'last name'),
+        Validation('string',true,data.phone_number,null,'phone number'),
+        Validation('string',true,data.contact_address,null,'contact address'),
+        Validation('string',true,data.contact_suite,null,'contact suite'),
+        Validation('string',true,data.contact_city,null,'contact city'),
+        Validation('string',true,data.contact_country,null,'contact country'),
+        Validation('number',true,data.contact_postal_code,null,'contact postal code'),
+        Validation('string',true,data.company_name,null,'company name'),
+        Validation('string',true,data.profile_address,null,'profile address'),
+        Validation('string',true,data.profile_suite,null,'profile suite'),
+        Validation('string',true,data.profile_city,null,'profile city'),
+        Validation('string',true,data.profile_country,null,'profile country'),
+        Validation('number',true,data.profile_postal_code,null,'profile postal code'),
+        Validation('string',true,data.state_of_clec_certification,null,'state of clec certification',2),
+        Validation('array',true,data.ocn,null,'ocn',4),
     )
 
 
-    let errorMessage = errorMessageArr.filter(Boolean).length ? errorMessageArr.filter(Boolean) : []
-
-    return errorMessage
+    return errorMessageArr.filter(Boolean).length ? errorMessageArr.filter(Boolean) : []
 }
 
 // Create and Save a new Clec Admin
 exports.register = (req, res) => {
     let validateResult = validateRequestData(req.body)
+
 
     if (validateResult.length === 0){
         const salt = bcrypt.genSaltSync(saltRounds);
@@ -38,6 +52,7 @@ exports.register = (req, res) => {
             username: req.body.username,
             password: hash,
             email: req.body.email,
+            role: 'clec',
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             phone_number: req.body.phone_number,
@@ -53,9 +68,8 @@ exports.register = (req, res) => {
             profile_country: req.body.profile_country,
             profile_postal_code: req.body.profile_postal_code,
             state_of_clec_certification: req.body.state_of_clec_certification,
-            upload_clec_certification: req.body.upload_clec_certification,
+            // upload_clec_certification: req.body.upload_clec_certification,
             ocn: req.body.ocn,
-
         };
 
 
@@ -70,7 +84,7 @@ exports.register = (req, res) => {
                     success: false,
                     error:{
                         message: err.parent ? err.parent.detail : err.message,
-                        code: 0
+                        code: 406
                     }
                 });
             });
@@ -94,12 +108,12 @@ exports.login = (req, res) => {
     if (req.params.clec_uuid){
         User.findOne({where: {clec_uuid: req.params.clec_uuid} }).then(user => {
             if (user){
-                user.token = signToken({
+                let token = signToken({
                     clec_uuid: user.clec_uuid,
                     role: user.role,
                     username: user.username
                 })
-                res.status(200).send(user)
+                res.status(200).send({success:true,payload:user,expired:JWT_EXPIRATION,token})
             }else{
                 res.status(503).send({
                     message: 'User Not found'

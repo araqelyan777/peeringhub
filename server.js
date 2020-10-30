@@ -3,16 +3,22 @@ const bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser')
 const cors = require("cors");
 const swaggerUI = require('swagger-ui-express')
-const swaggerJsDoc = require('swagger-jsdoc')
 const YAML = require('yamljs')
 const SwaggerYaml = YAML.load('./swagger.yaml')
+// const multer = require('multer');
 
+// const upload = multer();
 
 const app = express();
 
 var corsOptions = {
     origin: "http://localhost:8081"
 };
+
+
+// for parsing multipart/form-data
+// app.use(upload.single('file'));
+// app.use(express.static('public'));
 
 
 app.use(cors(corsOptions));
@@ -31,8 +37,8 @@ db.sequelize.sync();
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(SwaggerYaml));
 
 
+
 // Connect Routes
-require("./app/routes/tutorial")(app);
 require("./app/routes/user")(app);
 
 

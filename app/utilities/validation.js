@@ -1,4 +1,4 @@
-exports.Validation = (type='string',isRequired=false,field,compareField=null,fieldName)=>{
+exports.Validation = (type='string',isRequired=false,field,compareField=null,fieldName,itemLength=null)=>{
 
     if (isRequired && !field){
         return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field required!`
@@ -6,18 +6,35 @@ exports.Validation = (type='string',isRequired=false,field,compareField=null,fie
 
     if (type === 'string' && typeof field === 'string'){
         if (field && field.length > 255){
-            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} have max size 255!`
+            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field max length=255!`
         }
-    }if (type === 'number' && typeof field === 'number'){
+        if (itemLength && field.length > itemLength){
+            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field max length=${itemLength}!`
+        }
+    }
+    if (type === 'number' && typeof field === 'number'){
         if (field <= 0){
-            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must have more then 0!`
+            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field value more then 0!`
         }
-    } if (type === 'password'){
+    }
+    if (type === 'password'){
         if (!field || !compareField || field !== compareField){
-            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} and confirm_password required and must be same!`
+            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field and confirm_password field required and must be same!`
         }
-    }if (type === 'email' && !ValidateEmail(field)){
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} not valid!`
+    }
+    if (type === 'email' && !ValidateEmail(field)){
+        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field not valid!`
+    }
+    if (type === 'array'){
+        let success = true
+        field.map((item)=>{
+            if (item.length > itemLength){
+                success = false
+            }
+        })
+        if (!success) {
+            return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} field each item length must be less then 4!`
+        }
     }
 
     return ''
