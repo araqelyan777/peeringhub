@@ -3,7 +3,7 @@ module.exports = app => {
 
     // For File Upload
     const multer = require('../utilities/multer.js');
-    const upload = multer.setImageFolder('app/public');
+    const upload = multer.setImageFolder('app/public/user');
 
     //For validation request body
     const { userValidationRules, validate } = require('../utilities/validation/validator')

@@ -41,63 +41,109 @@ paths:
       description: Create Clec User
       requestBody:
         content:
-          application/json:
-           schema:
-             properties:
-               username:
-                 type: string
-               clec_uuid:
-                 type: string
-                 format: uuid
-               password:
-                 type: string
-                 format: password
-               confirm_password:
-                 type: string
-                 format: password
-               email:
-                 type: string
-                 format: email
-               role:
-                 type: string
-               first_name:
-                 type: string
-               last_name:
-                 type: string
-               phone_number:
-                 type: string
-               contact_address:
-                 type: string
-               contact_suite:
-                 type: string
-               contact_city:
-                 type: string
-               contact_country:
-                 type: string
-               contact_postal_code:
-                 type: string
-                 example: '0008'
-               company_name:
-                 type: string
-               profile_address:
-                 type: string
-               profile_suite:
-                 type: string
-               profile_city:
-                 type: string
-               profile_country:
-                 type: string
-               profile_postal_code:
-                 type: string
-                 example: '8000'
-               state_of_clec_certification:
-                 type: string
-                 example: US
-               upload_clec_certification:
-                 type: string
-               ocn:
-                 type: array
-                 example: [ test, te75, 7895 ]
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: string
+                clec_uuid:
+                  type: string
+                  format: uuid
+                  example: d835c2f0-a2e3-4a6f-b973-e7e40a85d35a
+                password:
+                  type: string
+                  format: password
+                  example: password
+                confirm_password:
+                  type: string
+                  format: password
+                  example: password
+                email:
+                  type: string
+                  format: email
+                  example: admin@gmail.com
+                role:
+                  type: string
+                  example: clec
+                first_name:
+                  type: string
+                  example: string
+                last_name:
+                  type: string
+                  example: string
+                phone_number:
+                  type: string
+                  example: string
+                contact_address:
+                  type: string
+                  example: string
+                contact_suite:
+                  type: string
+                  example: string
+                contact_city:
+                  type: string
+                  example: string
+                contact_country:
+                  type: string
+                  example: string
+                contact_postal_code:
+                  type: string
+                  example: '0008'
+                company_name:
+                  type: string
+                  example: string
+                profile_address:
+                  type: string
+                  example: string
+                profile_suite:
+                  type: string
+                  example: string
+                profile_city:
+                  type: string
+                  example: string
+                profile_country:
+                  type: string
+                  example: string
+                profile_postal_code:
+                  type: string
+                  example: '8000'
+                state_of_clec_certification:
+                  type: string
+                  example: US
+                ocn:
+                  type: array
+                  example: [ test, te75, 7895 ]
+                upload_clec_certification:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - username
+                - clec_uuid
+                - password
+                - confirm_password
+                - email
+                - role
+                - first_name
+                - last_name
+                - phone_number
+                - contact_address
+                - contact_suite
+                - contact_city
+                - contact_country
+                - contact_postal_code
+                - company_name
+                - profile_address
+                - profile_suite
+                - profile_city
+                - profile_country
+                - profile_postal_code
+                - state_of_clec_certification
+                - upload_clec_certification
+                - ocn
       responses:
         200:
           description: Successfully Executed

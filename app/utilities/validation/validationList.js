@@ -26,14 +26,21 @@ const adminClecPostValidation = [
         body('profile_country','Profile Country field is required').not().isEmpty(),
         body('profile_postal_code','Profile Postal Code field is required').not().isEmpty(),
         body('state_of_clec_certification','State Of Clec Certification field is required and max length 2').isAlphanumeric().isLength({ min: 1, max:2}),
-        body('ocn','Ocn field is required').not().isEmpty().custom((array)=>{
-            if (array){
-                array.map((item)=>{
+        body('upload_clec_certification').custom((data,{req})=>{
+            if (req.files.length === 0){
+                throw new Error("Upload Clec Certification field is required");
+            }
+            return req.files
+        }),
+        body('ocn','Ocn field is required').not().isEmpty().custom((array,{req})=>{
+            let arrayOcn = array.split(',')
+            if (arrayOcn){
+                arrayOcn.map((item)=>{
                     if (item.toString().length > 4){
                         throw new Error("Ocn field each item length must be less then 4");
                     }
                 })
-                return array
+                return arrayOcn
             }
 
         })

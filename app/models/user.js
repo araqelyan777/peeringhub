@@ -69,13 +69,12 @@ module.exports = (sequelize, Sequelize,DataTypes) => {
         state_of_clec_certification: {
             type: Sequelize.STRING(2),
         },
-        // upload_clec_certification: {
-        //     type: Sequelize.ARRAY(Sequelize.STRING),
-        // },
+        upload_clec_certification: {
+            type: Sequelize.ARRAY(Sequelize.STRING),
+        },
         ocn: {
             type: Sequelize.ARRAY(Sequelize.STRING(4)),
         },
-
     });
 
     return User;

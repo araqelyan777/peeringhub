@@ -10,7 +10,11 @@ module.exports.setImageFolder = (folderPath) =>{
 
         // By default, multer removes file extensions so let's add them back
         filename: function(req, file, cb) {
-            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+            let fileName
+            if (file.originalname){
+                 fileName = file.originalname.split(".")[0]
+            }
+            cb(null, (fileName ? fileName : file.fieldname) + '-' + Date.now() + path.extname(file.originalname));
         }
     });
     return  upload = multer({
