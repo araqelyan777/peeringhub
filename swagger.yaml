@@ -60,10 +60,6 @@ paths:
                 username:
                   type: string
                   example: string
-                clec_uuid:
-                  type: string
-                  format: uuid
-                  example: d835c2f0-a2e3-4a6f-b973-e7e40a85d35a
                 password:
                   type: string
                   format: password
@@ -134,7 +130,6 @@ paths:
                     format: binary
               required:
                 - username
-                - clec_uuid
                 - password
                 - confirm_password
                 - email
@@ -167,7 +162,7 @@ paths:
                   success:
                     type: boolean
                     default: true
-                  object_id:
+                  clec_uuid:
                     type: string
         400:
           content:

@@ -51,7 +51,7 @@ exports.register = (req, res) => {
     // Save Clec Admin in the database
     User.create(user)
         .then(data => {
-            res.status(200).send({success: true, object_id: data.clec_uuid});
+            res.status(200).send({success: true, clec_uuid: data.clec_uuid});
         })
         .catch(err => {
             res.status(406).send({
