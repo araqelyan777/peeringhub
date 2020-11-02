@@ -54,11 +54,12 @@ exports.register = (req, res) => {
             res.status(200).send({success: true, clec_uuid: data.clec_uuid});
         })
         .catch(err => {
+            console.log(err)
             res.status(406).send({
                 error_type: 'string',
                 success: false,
                 error: {
-                    message: err.parent ? err.parent.detail : err.message,
+                    message: err,
                     code: 406
                 }
             });
