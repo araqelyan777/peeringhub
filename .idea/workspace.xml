@@ -19,21 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9c34ff6-65c0-4519-a851-df592c98303f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/db.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/middleware/verifyToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/middleware/verifyToken.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/user/dummy-1604135967483.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/user/dummy-1604136824520.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utilities/jwt.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/utilities/jwt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utilities/validation/validationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/utilities/validation/validationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="b9c34ff6-65c0-4519-a851-df592c98303f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +115,7 @@
       <workItem from="1604040813673" duration="23790000" />
       <workItem from="1604076676116" duration="11055000" />
       <workItem from="1604122089940" duration="27390000" />
-      <workItem from="1604318915623" duration="3481000" />
+      <workItem from="1604318915623" duration="3890000" />
     </task>
     <servers />
   </component>
