@@ -10,6 +10,8 @@ info:
 servers:
   - description: SwaggerHub API Auto Mocking
     url: http://localhost:8080/
+  - description:
+    url: https://test-rest-api7.herokuapp.com
 paths:
   /admin/clec/{clec_uuid}:
     get:
