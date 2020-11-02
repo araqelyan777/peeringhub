@@ -7,6 +7,9 @@ info:
   # Added by API Auto Mocking Plugin
 #  - description: SwaggerHub API Auto Mocking
 #    url: https://virtserver.swaggerhub.com/araqelyan777/Peeringhub/1.0.0
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: http://localhost:8080/
 paths:
   /admin/clec/{clec_uuid}:
     get:
@@ -20,6 +23,8 @@ paths:
           required: true
           schema:
             type: string
+#      security:
+#        - authorization: [ ]
       responses:
         200:
           description: Successfully Executed
@@ -27,13 +32,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserClec'
+#        401:
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Unauthenticated'
+#          description: Unauthenticated
         404:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ObjectNotFound'
           description: Object not found error
-
   /admin/clec:
     post:
       tags:
@@ -176,11 +186,16 @@ paths:
                 $ref: '#/components/schemas/AlreadyExists'
           description: User already exists
 
-
-
-
-
 components:
+  securitySchemes:
+    authorization: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+      name: authorization
+      in: header
+      description: 'Name: authorization'
+
   schemas:
     UserClec:
       properties:
@@ -274,6 +289,20 @@ components:
         success:
           type: boolean
           default: false
+        error:
+          properties:
+            message:
+              type: string
+            code:
+              type: number
+              default: 0
+    Unauthenticated:
+      properties:
+        error_type:
+          type: string
+        success:
+          type: boolean
+          example: false
         error:
           properties:
             message:

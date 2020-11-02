@@ -34,6 +34,7 @@ const adminClecPostValidation = [
         }),
         body('ocn','Ocn field is required').not().isEmpty().custom((array,{req})=>{
             let arrayOcn = array.split(',')
+            console.log(arrayOcn)
             if (arrayOcn){
                 arrayOcn.map((item)=>{
                     if (item.toString().length > 4){

@@ -19,19 +19,28 @@ const { JWT_ID, JWT_ALGORITHM, JWT_EXPIRATION, JWT_KEY } = require('../config/co
 
  const getAuthTokenContent = (token) => {
     if (!token) {
-        throw new Error('no-token');
+        return {
+            value: "Token not exists",
+            error: new Error("Token not exists")
+        }
     }
 
     const [type, content] = token.split(' ');
 
     if (type !== 'Bearer') {
-        throw new Error('invalid-token-type');
+        return {
+            value: "Invalid token type",
+            error: new Error("Invalid token type")
+        }
     }
 
     try {
         return jwt.verify(content, JWT_KEY);
     } catch (e) {
-        throw new Error('invalid-token');
+        return {
+            value: "Invalid token",
+            error: new Error("Invalid token")
+        }
     }
 };
 

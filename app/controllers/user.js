@@ -14,7 +14,6 @@ exports.register = (req, res) => {
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
-    // console.log(req.files,'99999')
     let uploadFiles = []
     if (req.files){
         req.files.map((item)=>{
@@ -45,7 +44,7 @@ exports.register = (req, res) => {
         profile_postal_code: req.body.profile_postal_code,
         state_of_clec_certification: req.body.state_of_clec_certification,
         upload_clec_certification: uploadFiles,
-        ocn: req.body.ocn,
+        ocn: typeof req.body.ocn !== 'array' ?  req.body.ocn.split(',') : req.body.ocn,
     };
 
 
@@ -70,7 +69,6 @@ exports.register = (req, res) => {
 exports.login = (req, res) => {
     if (req.params.clec_uuid) {
         User.findOne({where: {clec_uuid: req.params.clec_uuid}}).then(user => {
-            console.log(user)
             if (user) {
                 let token = signToken({
                     clec_uuid: user.clec_uuid,
@@ -79,8 +77,10 @@ exports.login = (req, res) => {
                 })
                 res.status(200).send({success: true, payload: user, expired: JWT_EXPIRATION, token})
             } else {
-                res.status(503).send({
-                    message: 'User Not found'
+                res.status(404).send({
+                    error: 'User Not found',
+                    error_type: 'string',
+                    success: false
                 });
 
             }
